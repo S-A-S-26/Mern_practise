@@ -7,19 +7,27 @@ import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Home from './components/Home';
 import Login from './components/Login';
 import Registration from './components/Registration';
+import Navbar from './components/Navbar';
+import About from './components/About';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-     <div>
+     <div className='flex flex-col h-screen'>
       <BrowserRouter>
-        <Routes>
-          <Route path='/home' element={<Home/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/reg' element={<Registration/>}/>
-        </Routes>
+        <div>
+          <Navbar/>
+        </div>
+        <div className='grow'>
+          <Routes>
+            <Route path='/home' element={<Home/>}/>
+            <Route path='/about' element={<About/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/reg' element={<Registration/>}/>
+          </Routes>
+        </div>
       </BrowserRouter>
      </div>
     </>
