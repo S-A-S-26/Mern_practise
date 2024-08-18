@@ -6,7 +6,7 @@ const validate = (schema)=> (async(req,res,next)=>{
         next()
     } catch (error) {
         console.log("error---",error.errors)
-        res.status(401).json({message:error.errors[0].message})
+        res.status(401).json({msg:error.errors[0].message})
     }
 })
 

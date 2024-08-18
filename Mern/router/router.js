@@ -5,6 +5,8 @@ const login = require('../controller/login')
 const validate = require('../middlewares/validator')
 const registeration = require('../validators/registeration')
 const loginVal = require('../validators/login')
+const check_login = require('../controller/check_login')
+const checkJwt =require('../middlewares/jwt_validator')
 
 
 router.get("/router",function(req,res){
@@ -17,4 +19,7 @@ router.post("/create_user",
 )
 
 router.post("/login",validate(loginVal),login)
+
+router.get("/check_login",checkJwt,check_login)
+
 module.exports=router;

@@ -13,7 +13,7 @@ const createUser=async (req,res)=>{
         console.log("user",user,email)
         if (user){
             console.log("user already exist")
-            return res.status(400).send({message: 'User already exists'})
+            return res.status(400).send({msg: 'User already exists'})
         }else{
             const salt= await bcrypt.genSalt(10) 
             const hashPassword = await bcrypt.hash(req.body.password,salt)
@@ -21,12 +21,12 @@ const createUser=async (req,res)=>{
             console.log("newUser",newUser)
             if (newUser){
                 console.log("user created successfully")
-                return res.status(201).send({user:newUser,token:await newUser.genJwt(),_id:newUser._id.toString()})
+                return res.status(201).json({user:newUser,token:await newUser.genJwt(),_id:newUser._id.toString()})
             }
         }
     } catch (error) {
        console.log("error creating user",error)
-       return res.status(500).send({message: 'Error creating user'})
+       return res.status(500).json({msg: 'Error creating user'})
     }
 }
 

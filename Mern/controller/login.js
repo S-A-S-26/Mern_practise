@@ -11,12 +11,12 @@ const login = async function(req,res){
     if (user){
         const passCheck =await bcrypt.compare(reqPassword,user.password)
         if (passCheck){
-            res.status(200).send({msg:"Login Sucessfull",token:await user.genJwt(),_id:user.id})
+            res.status(200).json({msg:"Login Sucessfull",token:await user.genJwt(),_id:user.id})
         }else{
-            res.status(403).send("Incorrect Password")
+            res.status(403).json({msg:"Incorrect Password"})
         }
     }else{
-        res.status(404).send("User does not exist")
+        res.status(404).json({msg:"User does not exist"})
     }
 
 }
